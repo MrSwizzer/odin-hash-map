@@ -39,4 +39,16 @@ export default class HashMap {
 			return null;
 		}
 	}
+
+	has(key) {
+		const hash = this.hash(key, this.buckets.length);
+		const bucket = this.buckets[hash];
+
+		if (bucket.length === 0) {
+			return false;
+		}
+
+		const indexOfExistingEntry = bucket.findIndex((element) => element.key === key);
+		return indexOfExistingEntry !== -1;
+	}
 }
