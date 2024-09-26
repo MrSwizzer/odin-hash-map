@@ -122,7 +122,36 @@ function testHashMapLengthMethod() {
 	// Remove the last entry
 	hashMap.remove('carrot');
 	console.log('Expecting length to be 0 after removing all entries:', hashMap.length() === 0);
+	console.log('------------------------------------------');
 }
 
 // Call the tests
 testHashMapLengthMethod();
+
+function testHashMapClearMethod() {
+	console.log("\nTesting 'clear' method");
+
+	const hashMap = new HashMap(16);
+
+	//Add test data
+	hashMap.set('apple', 'red');
+	hashMap.set('banana', 'yellow');
+	hashMap.set('carrot', 'orange');
+
+	//Check length before
+	console.log('Expecting length 3 before clear: ', hashMap.length() === 3);
+
+	hashMap.clear();
+
+	//Check length after
+	console.log('Expecting length 0 after clear: ', hashMap.length() === 0);
+
+	//Check if entries are removed
+	console.log('Expecting apple to be removed after: ', hashMap.has('apple') === false);
+	console.log('Expecting banana to be removed after: ', hashMap.has('banana') === false);
+	console.log('Expecting orange to be removed after: ', hashMap.has('carrot') === false);
+	console.log('------------------------------------------');
+}
+
+// Call the tests
+testHashMapClearMethod();

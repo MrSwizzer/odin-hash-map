@@ -70,4 +70,9 @@ export default class HashMap {
 	length() {
 		return this.entryCount;
 	}
+
+	clear() {
+		this.buckets = new Array(this.size).fill(null).map(() => []);
+		this.entryCount = 0;
+	}
 }
