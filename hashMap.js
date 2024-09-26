@@ -1,4 +1,4 @@
-class HashMap {
+export default class HashMap {
 	constructor(size = 16) {
 		this.size = size;
 		this.buckets = new Array(size).fill(null).map(() => []);
@@ -13,5 +13,30 @@ class HashMap {
 		}
 
 		return hashCode;
+	}
+
+	set(key, value) {
+		const hash = this.hash(key, this.buckets.length);
+		const bucket = this.buckets[hash];
+
+		const indexOfExistingEntry = bucket.findIndex((element) => element.key === key);
+
+		if (indexOfExistingEntry !== -1) {
+			bucket[indexOfExistingEntry].value = value;
+		} else {
+			bucket.push({ key: key, value: value });
+		}
+	}
+
+	get(key) {
+		const hash = this.hash(key, this.buckets.length);
+		const bucket = this.buckets[hash];
+
+		const indexOfExistingEntry = bucket.findIndex((element) => element.key === key);
+		if (indexOfExistingEntry !== -1) {
+			return bucket[indexOfExistingEntry].value;
+		} else {
+			return null;
+		}
 	}
 }
