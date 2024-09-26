@@ -239,3 +239,63 @@ function testHashMapValuesMethod() {
 
 // Call the test
 testHashMapValuesMethod();
+
+function testHashMapEntriesMethod() {
+	console.log("\nTesting 'entries' method");
+
+	const hashMap = new HashMap(16);
+
+	// Add test data
+	hashMap.set('apple', 'red');
+	hashMap.set('banana', 'yellow');
+	hashMap.set('carrot', 'orange');
+
+	// Helper function to sort entries by key (optional, depending on your hash map implementation)
+	const sortEntries = (entries) => entries.sort((a, b) => a[0].localeCompare(b[0]));
+
+	// Test entries output
+	let entries = hashMap.entries();
+	const expectedEntries = [
+		['apple', 'red'],
+		['banana', 'yellow'],
+		['carrot', 'orange'],
+	];
+	console.log('\nTest entries array:');
+	console.log('Expecting entries to contain key-value pairs:');
+	console.log(
+		`Expecting ${JSON.stringify(expectedEntries)}:`,
+		JSON.stringify(sortEntries(entries)) === JSON.stringify(sortEntries(expectedEntries))
+	);
+
+	// Overwrite a key and check entries again
+	hashMap.set('apple', 'green');
+	entries = hashMap.entries();
+	const updatedExpectedEntries = [
+		['apple', 'green'],
+		['banana', 'yellow'],
+		['carrot', 'orange'],
+	];
+	console.log('\nTest after overwriting a key:');
+	console.log(
+		`Expecting ${JSON.stringify(updatedExpectedEntries)}:`,
+		JSON.stringify(sortEntries(entries)) === JSON.stringify(sortEntries(updatedExpectedEntries))
+	);
+
+	// Remove a key and test
+	hashMap.remove('banana');
+	entries = hashMap.entries();
+	const afterRemovalEntries = [
+		['apple', 'green'],
+		['carrot', 'orange'],
+	];
+	console.log('\nTest after removing a key:');
+	console.log(
+		`Expecting ${JSON.stringify(afterRemovalEntries)}:`,
+		JSON.stringify(sortEntries(entries)) === JSON.stringify(sortEntries(afterRemovalEntries))
+	);
+
+	console.log('------------------------------------------');
+}
+
+// Call the test
+testHashMapEntriesMethod();

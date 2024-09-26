@@ -97,4 +97,14 @@ export default class HashMap {
 
 		return allValues;
 	}
+
+	entries() {
+		let entries = [];
+		for (const bucket of this.buckets) {
+			for (const entry of bucket) {
+				entries.push([entry.key, entry.value]);
+			}
+		}
+		return entries;
+	}
 }
