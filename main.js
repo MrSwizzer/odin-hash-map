@@ -90,3 +90,39 @@ function testHashMapRemoveMethod() {
 
 // Call the tests
 testHashMapRemoveMethod();
+
+function testHashMapLengthMethod() {
+	console.log("\nTesting 'length' method");
+
+	const hashMap = new HashMap(16);
+
+	// Initial length should be 0
+	console.log('Expecting initial length to be 0:', hashMap.length() === 0);
+
+	// Add test data
+	hashMap.set('apple', 'red');
+	hashMap.set('banana', 'yellow');
+	hashMap.set('carrot', 'orange');
+
+	// Length after adding entries
+	console.log('Expecting length to be 3 after adding three entries:', hashMap.length() === 3);
+
+	// Overwrite an existing entry
+	hashMap.set('apple', 'green');
+	console.log('Expecting length to still be 3 after overwriting an entry:', hashMap.length() === 3);
+
+	// Remove an entry
+	hashMap.remove('banana');
+	console.log('Expecting length to be 2 after removing one entry:', hashMap.length() === 2);
+
+	// Remove another entry
+	hashMap.remove('apple');
+	console.log('Expecting length to be 1 after removing another entry:', hashMap.length() === 1);
+
+	// Remove the last entry
+	hashMap.remove('carrot');
+	console.log('Expecting length to be 0 after removing all entries:', hashMap.length() === 0);
+}
+
+// Call the tests
+testHashMapLengthMethod();

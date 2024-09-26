@@ -2,6 +2,7 @@ export default class HashMap {
 	constructor(size = 16) {
 		this.size = size;
 		this.buckets = new Array(size).fill(null).map(() => []);
+		this.entryCount = 0;
 	}
 
 	hash(key, bucketsLength) {
@@ -25,6 +26,7 @@ export default class HashMap {
 			bucket[indexOfExistingEntry].value = value;
 		} else {
 			bucket.push({ key: key, value: value });
+			this.entryCount++;
 		}
 	}
 
@@ -58,9 +60,14 @@ export default class HashMap {
 			const bucket = this.buckets[hash];
 			const indexOfExistingEntry = bucket.findIndex((element) => element.key === key);
 
-			bucket.splice(indexOfExistingEntry);
+			bucket.splice(indexOfExistingEntry, 1);
+			this.entryCount--;
 			return true;
 		}
 		return false;
+	}
+
+	length() {
+		return this.entryCount;
 	}
 }
