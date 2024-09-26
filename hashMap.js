@@ -51,4 +51,16 @@ export default class HashMap {
 		const indexOfExistingEntry = bucket.findIndex((element) => element.key === key);
 		return indexOfExistingEntry !== -1;
 	}
+
+	remove(key) {
+		if (this.has(key)) {
+			const hash = this.hash(key, this.buckets.length);
+			const bucket = this.buckets[hash];
+			const indexOfExistingEntry = bucket.findIndex((element) => element.key === key);
+
+			bucket.splice(indexOfExistingEntry);
+			return true;
+		}
+		return false;
+	}
 }
