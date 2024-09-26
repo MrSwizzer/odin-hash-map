@@ -155,3 +155,45 @@ function testHashMapClearMethod() {
 
 // Call the tests
 testHashMapClearMethod();
+
+function testHashMapKeysMethod() {
+	console.log("Testing 'keys' method");
+
+	const hashMap = new HashMap(16);
+
+	// Add test data
+	hashMap.set('apple', 'red');
+	hashMap.set('banana', 'yellow');
+	hashMap.set('carrot', 'orange');
+
+	// Test if all keys are returned
+	console.log('\nTest if all keys are returned:');
+	const keys = hashMap.keys();
+	console.log('Expecting ["apple", "banana", "carrot"]:');
+	console.log('Actual keys:', keys);
+	console.log('Test passed:', JSON.stringify(keys.sort()) === JSON.stringify(['apple', 'banana', 'carrot'].sort()));
+
+	// Test with an empty map
+	console.log('\nTest with an empty map:');
+	hashMap.clear();
+	const emptyKeys = hashMap.keys();
+	console.log('Expecting an empty array []:');
+	console.log('Actual keys:', emptyKeys);
+	console.log('Test passed:', emptyKeys.length === 0);
+
+	// Test after removing an entry
+	console.log('\nTest after removing an entry:');
+	hashMap.set('apple', 'red');
+	hashMap.set('banana', 'yellow');
+	hashMap.set('carrot', 'orange');
+	hashMap.remove('banana');
+	const keysAfterRemove = hashMap.keys();
+	console.log('Expecting ["apple", "carrot"]:');
+	console.log('Actual keys:', keysAfterRemove);
+	console.log('Test passed:', JSON.stringify(keysAfterRemove.sort()) === JSON.stringify(['apple', 'carrot'].sort()));
+
+	console.log('------------------------------------------');
+}
+
+// Call the test
+testHashMapKeysMethod();

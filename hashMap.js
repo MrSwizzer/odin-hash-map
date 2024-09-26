@@ -75,4 +75,15 @@ export default class HashMap {
 		this.buckets = new Array(this.size).fill(null).map(() => []);
 		this.entryCount = 0;
 	}
+
+	keys() {
+		let allKeys = [];
+		for (const bucket of this.buckets) {
+			for (const entry of bucket) {
+				allKeys.push(entry.key);
+			}
+		}
+
+		return allKeys;
+	}
 }
