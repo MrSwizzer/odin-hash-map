@@ -24,7 +24,6 @@ function testHashMap() {
 	// Test retrieving a non-existing key
 	console.log('\nTest retrieving a non-existing key');
 	console.log('Expecting a non-existent key "grape" to return null:', hashMap.get('grape') === null); // Expected: true
-
 	console.log('------------------------------------------');
 }
 
@@ -191,7 +190,6 @@ function testHashMapKeysMethod() {
 	console.log('Expecting ["apple", "carrot"]:');
 	console.log('Actual keys:', keysAfterRemove);
 	console.log('Test passed:', JSON.stringify(keysAfterRemove.sort()) === JSON.stringify(['apple', 'carrot'].sort()));
-
 	console.log('------------------------------------------');
 }
 
@@ -233,7 +231,6 @@ function testHashMapValuesMethod() {
 	console.log('Expecting ["orange", "red"]:');
 	console.log('Actual values:', valuesAfterRemove);
 	console.log('Test passed:', JSON.stringify(valuesAfterRemove.sort()) === JSON.stringify(['red', 'orange'].sort()));
-
 	console.log('------------------------------------------');
 }
 
@@ -250,7 +247,7 @@ function testHashMapEntriesMethod() {
 	hashMap.set('banana', 'yellow');
 	hashMap.set('carrot', 'orange');
 
-	// Helper function to sort entries by key (optional, depending on your hash map implementation)
+	// Helper function to sort entries by key
 	const sortEntries = (entries) => entries.sort((a, b) => a[0].localeCompare(b[0]));
 
 	// Test entries output
@@ -293,7 +290,6 @@ function testHashMapEntriesMethod() {
 		`Expecting ${JSON.stringify(afterRemovalEntries)}:`,
 		JSON.stringify(sortEntries(entries)) === JSON.stringify(sortEntries(afterRemovalEntries))
 	);
-
 	console.log('------------------------------------------');
 }
 
